@@ -59,7 +59,7 @@ def my_form_post():
     else:
         sale_making = 'Patient does not have heart disease'
 
-    return render_template('home.html', target = target, sale_making = sale_making)
+    return render_template('home.html', target = target, heart_disease = heart_disease)
 
 
 if __name__ == "__main__":
