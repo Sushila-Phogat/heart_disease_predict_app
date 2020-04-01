@@ -13,8 +13,8 @@ with open('Models/svm_model.pkl', 'rb') as f:
     svm_model = pickle.load(f)
 
 
-def get_predictions(Patient Age, sex, Chest pain, Blood pressure, cholestoral,Fasting blood sugar,electrocardiographic results,maximum heart rate achieved,exercise induced angina,depression induced by exercise,slope of the peak exercise,vessels (0-3) colored by flourosopy,thal):
-    mylist = [Patient Age, sex, Chest pain, Blood pressure, cholestoral,Fasting blood sugar,electrocardiographic results,maximum heart rate achieved,exercise induced angina,depression induced by exercise,slope of the peak exercise,vessels (0-3) colored by flourosopy,thal]
+def get_predictions(age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal):
+    mylist = [age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]
     mylist = [float(i) for i in mylist]
     vals = [mylist]
 
@@ -37,22 +37,22 @@ def my_form():
 
 @app.route('/', methods=['POST', 'GET'])
 def my_form_post():
-    Age = request.form['Patient Age']
+    age = request.form['age']
     sex = request.form['sex']
-    CP = request.form['Chest pain']
-    BP = request.form['Blood pressure']
-    chol = request.form['cholestoral']
-    fbs = request.form['Fasting blood sugar']
-    ec = request.form['electrocardiographic results']
-    mhrt = request.form['maximum heart rate achieved']
-    exng = request.form['exercise induced angina']
-    dp = request.form['depression induced by exercise']
-    slope = request.form['slope of the peak exercise']
-    ca = request.form['vessels (0-3) colored by flourosopy']
+    cp = request.form['cp']
+    trestbps = request.form['trestbps']
+    chol = request.form['chol']
+    fbs = request.form['fbs']
+    restecg = request.form['restecg']
+    thalach = request.form['thalach']
+    exang = request.form['exang']
+    oldpeak = request.form['oldpeak']
+    slope = request.form['slope']
+    ca = request.form['ca']
     thal = request.form['thal']
     req_model = request.form['req_model']
 
-    target = get_predictions(Age,sex,CP,BP,chol,fbs,ec,mhrt,exng,dp,slope,ca,thal)
+    target = get_predictions(age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal)
 
     if target==1:
         sale_making = 'Patient is having heart disease'
