@@ -9,9 +9,6 @@ path = os.getcwd()
 with open('Models/RF_model.pkl', 'rb') as f:
     randomforest = pickle.load(f)
 
-with open('Models/svm_model.pkl', 'rb') as f:
-    svm_model = pickle.load(f)
-
 
 def get_predictions(age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal, req_model):
     mylist = [age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]
@@ -21,10 +18,6 @@ def get_predictions(age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak
     if req_model == 'RandomForest':
         #print(req_model)
         return randomforest.predict(vals)[0]
-
-    elif req_model == 'SVM':
-        #print(req_model)
-        return svm_model.predict(vals)[0]
     else:
         return "Cannot Predict"
 
