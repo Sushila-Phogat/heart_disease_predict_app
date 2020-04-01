@@ -13,7 +13,7 @@ with open('Models/svm_model.pkl', 'rb') as f:
     svm_model = pickle.load(f)
 
 
-def get_predictions(age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal):
+def get_predictions(age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal, req_model):
     mylist = [age, sex,cp,trestbps, chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]
     mylist = [float(i) for i in mylist]
     vals = [mylist]
